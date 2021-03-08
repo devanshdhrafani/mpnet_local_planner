@@ -6,7 +6,7 @@ int main(int argc, char **argv)
 
 		ros::NodeHandle n;
         // For simulation use: 
-        mpnet_local_planner::OdometryHelperRos odom_helper_("/odom");
+        mpnet_local_planner::OdometryHelperRos odom_helper_("/pf/pose/odom");
         
         // For real-world use:
         // mpnet_local_planner::OdometryHelperRos odom_helper_("/robot_pose_ekf/odom_ekf_topic");
@@ -17,7 +17,7 @@ int main(int argc, char **argv)
         nav_msgs::Odometry base_odom;
 		ros::Subscriber path = n.subscribe("/move_base/MpnetLocalPlanner/local_plan", 2, &mpnet_local_planner::Controller::get_path, &controller);
 		// ros::Publisher control = n.advertise<ackermann_msgs::AckermannDriveStamped>("/vesc/high_level/ackermann_cmd_mux/input/nav_0", 10);
-        ros::Publisher control = n.advertise<ackermann_msgs::AckermannDriveStamped>("/drive", 10);
+        ros::Publisher control = n.advertise<ackermann_msgs::AckermannDriveStamped>("/vesc/ackermann_cmd_mux/input/navigation", 10);
         ros::ServiceServer resetController = n.advertiseService("reset_controller", &mpnet_local_planner::Controller::resetController, &controller);
         ros::Rate loop_rate(20);
         ros::spinOnce();
