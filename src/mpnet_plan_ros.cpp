@@ -229,7 +229,7 @@ namespace mpnet_local_planner{
         if (fabs((yaw_from_goal)<=yaw_goal_tolerance && xydist_from_goal<=xy_goal_tolerance) || reached_goal_) 
         {
             ROS_INFO("Reach Goal");
-            ROS_INFO("Number of RRT-star : %u Number of Dynamic MPnet : %u", dynmpnet_num, rrtstar_num);
+            ROS_INFO("Number of RRT-star : %u Number of Dynamic MPnet : %u", rrtstar_num, dynmpnet_num);
             cmd_vel.linear.x = 0.0;
             cmd_vel.linear.y = 0.0;
             cmd_vel.angular.z = 0.0;
